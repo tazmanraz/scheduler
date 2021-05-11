@@ -2,9 +2,9 @@ import React from "react";
 import "components/InterviewerListItem.scss";
 import classnames from 'classnames/bind';
 
-export default function DayListItem(props) {
+export default function InterviewerListItem(props) {
 
-  const interviewerClass = classnames("interviewers__item", {
+  const interviewerListItemClass = classnames("interviewers__item", {
     "interviewers__item--selected": props.selected,
   });
 
@@ -19,7 +19,7 @@ export default function DayListItem(props) {
     //   </li>
 
     <li 
-    className={interviewerClass}
+    className={interviewerListItemClass}
     onClick = {() => props.setInterviewer(props.name)}
     >
       <img
