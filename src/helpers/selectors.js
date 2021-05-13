@@ -1,5 +1,3 @@
-
-
 export function getAppointmentsForDay(state, day) {
   const apptsForDay = [];
 
