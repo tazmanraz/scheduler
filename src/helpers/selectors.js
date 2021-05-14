@@ -15,7 +15,6 @@ export function getAppointmentsForDay(state, day) {
 export function getInterview(state, interview) {
 
   if (!interview) return null;
-
   let fullInterview = {};
 
   for (let objKey in state.interviewers) {
@@ -27,4 +26,16 @@ export function getInterview(state, interview) {
     }
   }
   return fullInterview;
+}
+
+export function getInterviewersForDay(state, day) {
+  const dayFound = state.days.find(eachDay => eachDay.name === day);
+
+  if (!dayFound) {
+    return [];
+  }
+  const interviewers = dayFound.interviewers.map(interviewerId => state.interviewers[interviewerId]);
+
+  return interviewers;
+
 }
