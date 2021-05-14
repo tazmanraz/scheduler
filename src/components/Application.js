@@ -60,7 +60,7 @@ export default function Application(props) {
     appointments: {}
   });
 
-  const dailyAppointments = getAppointmentsForDay(state,state.day)
+  const dailyAppointments = getAppointmentsForDay(state, state.day)
 
   //dailyAppointments.map(appointment => appointments)
 
@@ -68,33 +68,45 @@ export default function Application(props) {
   const setDay = day => setState({ ...state, day });
   // const setDays = days => setState(prev => ({ ...prev, days }));
 
-const appointmentList = dailyAppointments.map((appointment) => {
-  return (<Appointment key={appointment.id} {...appointment}/>)
-})
+  const appointmentList = dailyAppointments.map((appointment) => {
+    // return (<Appointment key={appointment.id} {...appointment}/>)
 
-useEffect(() => {
-  // const url = `/api/days`
-  // axios.get(url)
-  // .then(response => {
-  //   setDays(response.data)
-  // })
+      const interview = getInterview(state, appointment.interview);
 
-  Promise.all([
-    axios.get('/api/days'),
-    axios.get('/api/appointments'),
-    axios.get('/api/interviewers')
-  ]).then((all) => {
-    console.log(all)
-    // const [first, second, third] = all;
-    const days = all[0].data
-    const appointments = all[1].data
-    const interviewers = all[2].data
-    
-    setState(prev => ({...prev, days, appointments, interviewers }));
+      return (
+        <Appointment
+          key={appointment.id}
+          id={appointment.id}
+          time={appointment.time}
+          interview={interview}
+        />
+      );
+      
+  })
 
-  });
+  useEffect(() => {
+    // const url = `/api/days`
+    // axios.get(url)
+    // .then(response => {
+    //   setDays(response.data)
+    // })
 
-},[])
+    Promise.all([
+      axios.get('/api/days'),
+      axios.get('/api/appointments'),
+      axios.get('/api/interviewers')
+    ]).then((all) => {
+      console.log(all)
+      // const [first, second, third] = all;
+      const days = all[0].data
+      const appointments = all[1].data
+      const interviewers = all[2].data
+
+      setState(prev => ({ ...prev, days, appointments, interviewers }));
+
+    });
+
+  }, [])
 
 
 
