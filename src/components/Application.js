@@ -10,14 +10,36 @@ export default function Application(props) {
   const [state, setState] = useState({
     day: "Monday",
     days: [],
-    appointments: {}
+    appointments: {},
+    interviewers: {}
   });
 
   const dailyAppointments = getAppointmentsForDay(state, state.day)
 
   //dailyAppointments.map(appointment => appointments)
 
-  
+  // function bookInterview(id, interview) {
+  //   console.log(id, interview);
+  // }
+
+  function bookInterview(id, interview) {
+    const appointment = {
+      ...state.appointments[id],
+      interview: { ...interview }
+    };
+
+    const appointments = {
+      ...state.appointments,
+      [id]: appointment
+    };
+
+    return axios.put(`/api/appointments/${id}`,{interview})
+    //When the response comes back we update the state using the existing setState.
+    .then(() => setState({
+      ...state,
+      appointments
+    }))
+  }
 
   const setDay = day => setState({ ...state, day });
   // const setDays = days => setState(prev => ({ ...prev, days }));
@@ -34,6 +56,7 @@ export default function Application(props) {
         time={appointment.time}
         interview={interview}
         interviewers={interviewersToday}
+        bookInterview={bookInterview}
       />
     );
 
@@ -51,8 +74,6 @@ export default function Application(props) {
       axios.get('/api/appointments'),
       axios.get('/api/interviewers')
     ]).then((all) => {
-      console.log(all)
-      // const [first, second, third] = all;
       const days = all[0].data
       const appointments = all[1].data
       const interviewers = all[2].data
