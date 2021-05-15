@@ -9,6 +9,13 @@ export default function useApplicationData() {
     interviewers: {}
   });
 
+  //ADD FUNCTION FOR UPDATE SPOTS
+  //TEST WITH GARY'S GIST HERE https://gist.github.com/gary-jipp/50c657b3c1b0bb3f2be5528de779fc41
+  
+  // const updateSpots = function (dayName, days, appointments) {
+
+  // };
+
   function bookInterview(id, interview) {
     const appointment = {
       ...state.appointments[id],
@@ -20,7 +27,12 @@ export default function useApplicationData() {
       [id]: appointment
     };
 
+    //WILL NEED TO ADD SPOTS HERE AND IN PROMISE
+    //DO SAME FOR cancelInterview
+    // const spots = updateSpots(dayName, days, appt)
+
     return axios.put(`/api/appointments/${id}`,{interview})
+    
     .then(() => setState({
       ...state,
       appointments
