@@ -5,10 +5,9 @@ import Header from "components/Appointment/Header"
 import Empty from "components/Appointment/Empty"
 import Show from "components/Appointment/Show"
 import Form from "components/Appointment/Form";
-import Status  from "components/Appointment/Status.js";
-import Confirm  from "components/Appointment/Confirm.js";
-
-
+import Status  from "components/Appointment/Status";
+import Confirm  from "components/Appointment/Confirm";
+import Error  from "components/Appointment/Error";
 
 import useVisualMode from "hooks/useVisualMode";
 
@@ -22,6 +21,8 @@ export default function Appointment(props) {
   const DELETING = "DELETING";
   const CONFIRM = "CONFIRM";
   const EDIT = "EDIT";
+  const ERROR_SAVE = "ERROR_SAVE";
+  const ERROR_DELETE = "ERROR_DELETE";
 
   const { mode, transition, back } = useVisualMode(
     props.interview ? SHOW : EMPTY
@@ -32,22 +33,22 @@ export default function Appointment(props) {
       student: name,
       interviewer
     };
-    console.log('Save initiated');
+  
     transition(SAVING);
-    props.bookInterview(props.id,interview)
-    .then(() => {
-      transition(SHOW)
-    })
-    .catch((err)=>console.log(err))
+  
+    props
+      .bookInterview(props.id, interview)
+      .then(() => transition(SHOW))
+      .catch(error => transition(ERROR_SAVE, true));
   }
 
-  function deleteAppointment() {
-    transition(DELETING);
-    props.cancelInterview(props.id)
-    .then(() => {
-      transition(EMPTY)
-    })
-  }
+  function destroy(event) {
+    transition(DELETING, true);
+    props
+     .cancelInterview(props.id)
+     .then(() => transition(EMPTY))
+     .catch(error => transition(ERROR_DELETE, true));
+   }
 
   function confirmDelete() {
     transition(CONFIRM)
@@ -98,9 +99,22 @@ export default function Appointment(props) {
           <Confirm 
             message={"Are you sure you would like to delete?"}
             onCancel={back}
-            onConfirm={deleteAppointment}
+            onConfirm={destroy}
           />
         )}
+        {mode === ERROR_SAVE &&
+          <Error 
+            message = {"Could not save appoitnment."} 
+            onClose={back}
+          />
+        }
+        {mode === ERROR_DELETE &&
+          <Error 
+            message = {"Could not delete appoitnment."} 
+            onClose={back}
+          />
+        }
+
     </article>
   )
 }
