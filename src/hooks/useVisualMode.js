@@ -28,8 +28,6 @@ export default function useVisualMode(initial) {
   /////////////////////
 
 
-
-    // transition the mode of app 
     const transition = (newMode, replace = false) => {
 
       if (replace) {
@@ -47,10 +45,9 @@ export default function useVisualMode(initial) {
   
     };
   
-    // going back to previous mode of app 
     const back = () => {
   
-      if (history.length > 1) { // Limit to not get before the initial mode
+      if (history.length > 1) { 
   
         const newHistory = [...history.slice(0, history.length - 1)];
   
