@@ -1,3 +1,5 @@
+// This component deals with the array of interviewers
+
 import React from "react";
 import "components/InterviewerList.scss";
 import "components/InterviewerListItem.scss";
@@ -13,6 +15,7 @@ export default function InterviewerList(props) {
     "interviewers__item--selected": props.selected,
   });
 
+  // Creates the interviewers list for the particular day
   const interviewers = props.interviewers.map(interviewer => {
     return (
       <InterviewerListItem
@@ -26,20 +29,9 @@ export default function InterviewerList(props) {
   });
 
   return (
-    <section className="interviewers">
+    <section className={interviewerClass}>
       <h4 className="interviewers__header text--light">Interviewer</h4>
-      
-      
       <ul className="interviewers__list">
-      {/* {props.interviewers.map((person) => 
-        <InterviewerListItem
-          key = {person.id}
-          name = {person.name}
-          avatar = {person.avatar}
-          selected = {person.id === props.interviewer}
-          setInterviewer = {props.setInterviewer}
-        />
-      )} */}
       {interviewers}
       </ul>
     </section>
@@ -47,6 +39,7 @@ export default function InterviewerList(props) {
 
 }
 
+// Ensures interviewers list is sent as an array
 InterviewerList.propTypes = {
   interviewers: PropTypes.array.isRequired
 };
