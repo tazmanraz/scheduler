@@ -1,3 +1,4 @@
+// This selector gets all the appointments for the day and is referenced in Applicaiton.js
 export function getAppointmentsForDay(state, day) {
   const apptsForDay = [];
 
@@ -8,13 +9,15 @@ export function getAppointmentsForDay(state, day) {
       }
     }
   }
-
   return apptsForDay;
 }
 
-export function getInterview(state, interview) {
 
-  if (!interview) return null;
+// This selector returns all the interview data from the interviewer object. Referenced in Application.js
+export function getInterview(state, interview) {
+  if (!interview) {
+    return null;
+  }
   let fullInterview = {};
 
   for (let objKey in state.interviewers) {
@@ -28,6 +31,8 @@ export function getInterview(state, interview) {
   return fullInterview;
 }
 
+
+// This selector gets all the interviewers for a particular day. Referenced in Application.js
 export function getInterviewersForDay(state, day) {
   const dayFound = state.days.find(eachDay => eachDay.name === day);
 
@@ -37,9 +42,9 @@ export function getInterviewersForDay(state, day) {
   const interviewers = dayFound.interviewers.map(interviewerId => state.interviewers[interviewerId]);
 
   return interviewers;
-
 }
 
+// This is a helper function for updateSpots that calculates the spots for a day
 const getSpotsForDay = function(dayObj, appointments){
   let spots =0;
   for (const id of dayObj.appointments) {
@@ -50,6 +55,8 @@ const getSpotsForDay = function(dayObj, appointments){
   return spots;
 };
 
+// This gives us an accurate spots count for day without mutating the original data.
+// Referenced in useApplication data in our custom hook
 export function updateSpots (dayName, days, appointments) {
   // Find the day object 
   const dayObj = days.find(day => day.name === dayName);
