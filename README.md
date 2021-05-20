@@ -5,16 +5,16 @@ This is an interview scheduling single-page app created in React. It allows stud
 
 
 ### Adding an Appointment
-!["Adding Appointment"](https://github.com/tazmanraz/scheduler/blob/master/docs/pic1.PNG)
+!["Adding Appointment"](https://github.com/tazmanraz/scheduler/blob/master/docs/pic1.JPG)
 
 ### Appointment Added with Hover Over Fridays
-!["Appointment and Hover"](https://github.com/tazmanraz/scheduler/blob/master/docs/pic2.PNG)
+!["Appointment and Hover"](https://github.com/tazmanraz/scheduler/blob/master/docs/pic2.JPG)
 
 ### Selecting Appointment to Modify/Delete
-!["Modifying Appointment"](https://github.com/tazmanraz/scheduler/blob/master/docs/pic3.PNG)
+!["Modifying Appointment"](https://github.com/tazmanraz/scheduler/blob/master/docs/pic3.JPG)
 
 ### Confirm Delete
-!["Confirm Delete"](https://github.com/tazmanraz/scheduler/blob/master/docs/pic4.PNG)
+!["Confirm Delete"](https://github.com/tazmanraz/scheduler/blob/master/docs/pic4.JPG)
 
 ## Dependancies
 
