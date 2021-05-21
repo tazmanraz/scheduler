@@ -1,3 +1,5 @@
+// This is the Application where everything ties together visually for the SPA
+
 import React from "react";
 import "components/Application.scss";
 import DayList from "components/DayList";
@@ -14,14 +16,12 @@ export default function Application(props) {
     bookInterview,
     cancelInterview
   } = useApplicationData();
-  
 
-  //STAY
+  // Referenced in selectors.js
   const dailyAppointments = getAppointmentsForDay(state, state.day)
   const interviewersToday = getInterviewersForDay(state, state.day)
 
-
-  //STAY
+  // Creates the appointment component for each dailyAppointments
   const appointmentList = dailyAppointments.map((appointment) => {
     const interview = getInterview(state, appointment.interview);
 
@@ -36,7 +36,6 @@ export default function Application(props) {
         cancelInterview={cancelInterview}
       />
     );
-
   })
 
   return (

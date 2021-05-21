@@ -38,7 +38,7 @@ export default function Appointment(props) {
 
     transition(SAVING);
 
-    // bookInterview referenced in Application.js and send all the required info
+    // bookInterview referenced in useApplicationData custom hook and send all the required info
     // to book the interview
     props
       .bookInterview(props.id, interview)
@@ -49,7 +49,7 @@ export default function Appointment(props) {
       );
   }
 
-  // Function that deletes an interview. cancelInterview in Applicaiton.js
+  // Function that deletes an interview. cancelInterview in useApplicationData custom hook
   function destroy(event) {
     transition(DELETING, true);
     props
