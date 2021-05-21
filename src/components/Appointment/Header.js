@@ -1,3 +1,5 @@
+// Displays the time for the appointment (12pm, 1pm, ... 5pm). Referenced in Appointment index.js
+
 import React from "react";
 
 export default function Header(props) {

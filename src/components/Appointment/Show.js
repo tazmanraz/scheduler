@@ -1,3 +1,6 @@
+// This shows an existing interview. Users can click edit or delete on this card as well
+// Referenced in Appointment index.js
+
 import React from "react";
 
 export default function Show(props) {

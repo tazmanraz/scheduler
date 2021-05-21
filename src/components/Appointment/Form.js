@@ -1,3 +1,5 @@
+// This is the form component when filling out an interview form. Referenced in Appointment index.js
+
 import React, { useState } from 'react';
 import InterviewerList from "../InterviewerList";
 import Button from "../Button";
@@ -7,6 +9,7 @@ export default function Form(props) {
   const [error, setError] = useState("");
   const [interviewer, setInterviewer] = useState(props.interviewer || null);
 
+  // Clears the form after a cancel
   const reset = () => {
     setName("");
     setInterviewer(null);

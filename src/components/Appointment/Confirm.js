@@ -1,5 +1,6 @@
 import React from "react";
 import Button from "components/Button";
+// Confirmation card before deleting an appointment. Referemced in Appointment index.js
 
 export default function Confirm(props) {
   return (

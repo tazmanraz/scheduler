@@ -1,3 +1,6 @@
+// Error component which shows errors for saving or deleting depending on props.message.
+// Referenced in Appointment index.js
+
 import React from "react";
 
 export default function Error(props) {

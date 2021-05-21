@@ -1,3 +1,6 @@
+// Shows when it's "SAVING" or "DELETING" based on props.message
+// Referenced in Appointments index.js
+
 import React from "react";
 
 export default function Status(props) {
