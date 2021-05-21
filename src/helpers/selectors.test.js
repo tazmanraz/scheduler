@@ -1,5 +1,6 @@
 import { getAppointmentsForDay, getInterview, getInterviewersForDay } from "helpers/selectors";
 
+// Dummy data to test
 const state = {
   days: [
     {
@@ -44,7 +45,7 @@ const state = {
   }
 };
 
-
+///////////////////////
 
 test("getAppointmentsForDay returns an array", () => {
   const result = getAppointmentsForDay(state, "Monday");

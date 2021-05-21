@@ -6,7 +6,6 @@ import {
   waitForElement,
   fireEvent,
   getByText,
-  prettyDOM,
   getAllByTestId,
   getByAltText,
   getByPlaceholderText,
@@ -16,25 +15,12 @@ import {
 } from "@testing-library/react";
 
 import Application from "components/Application";
-//import axios from "__mocks__/axios";
 import axios from "axios"
 
 afterEach(cleanup);
 
-// xit("renders without crashing", () => {
-//   render(<Application />);
-// });
 
 describe("Application", () => {
-  // xit("defaults to Monday and changes the schedule when a new day is selected", () => {
-  //   const { getByText } = render(<Application />);
-
-  //   return waitForElement(() => getByText("Monday")).then(() => {
-  //     fireEvent.click(getByText("Tuesday"));
-  //     expect(getByText("Leopold Silvers")).toBeInTheDocument();
-  //   });
-  // });
-
   it("changes the schedule when a new day is selected", async () => {
     const { getByText } = render(<Application />);
 
@@ -45,10 +31,13 @@ describe("Application", () => {
     expect(getByText("Leopold Silvers")).toBeInTheDocument();
   });
 
+////////////////////
+// BOOK INTERVIEW //
+//////////////////// 
 
   it("loads data, books an interview and reduces the spots remaining for Monday by 1", async () => {
     // 1. Render the Application.
-    const { container, debug } = render(<Application />);
+    const { container } = render(<Application />);
 
     // 2. Wait until the text "Archie Cohen" is displayed.
     await waitForElement(() => getByText(container, "Archie Cohen"));
@@ -84,9 +73,13 @@ describe("Application", () => {
 
   });
 
+//////////////////////
+// DELETE INTERVIEW //
+////////////////////// 
+
   it("loads data, cancels an interview and increases the spots remaining for Monday by 1", async () => {
   // 1. Render the Application.
-  const { container, debug } = render(<Application />);
+  const { container } = render(<Application />);
 
   // 2. Wait until the text "Archie Cohen" is displayed.
   await waitForElement(() => getByText(container, "Archie Cohen"));
@@ -117,12 +110,14 @@ describe("Application", () => {
   expect(getByText(day, "2 spots remaining")).toBeInTheDocument();
   });
 
-/////////////////////////
 
+////////////////////
+// EDIT INTERVIEW //
+////////////////////
 
   it("loads data, edits an interview and keeps the spots remaining for Monday the same", async () => {
   // 1. Render the Application.
-  const { container, debug } = render(<Application />);
+  const { container } = render(<Application />);
 
   // 2. Wait until the text "Archie Cohen" is displayed.
   await waitForElement(() => getByText(container, "Archie Cohen"));
@@ -159,13 +154,15 @@ describe("Application", () => {
 
   });
 
-/////////////////////////////////////// ERROR SAVE
+////////////////
+// ERROR SAVE //
+////////////////
 
 it("shows the save error when failing to save an appointment", async () => {
   axios.put.mockRejectedValueOnce();
   
   // 1. Render the Application.
-  const { container, debug } = render(<Application />);
+  const { container } = render(<Application />);
 
     // 2. Wait until the text "Archie Cohen" is displayed.
     await waitForElement(() => getByText(container, "Archie Cohen"));
@@ -202,12 +199,15 @@ it("shows the save error when failing to save an appointment", async () => {
 
   });
 
-  ////////////////////////////////////////// ERROR DELTE
+//////////////////
+// ERROR DELETE //
+//////////////////
+
   it("shows the delete error when failing to delete an existing appointment", async () => {
     axios.delete.mockRejectedValueOnce();
   
     // 1. Render the Application.
-    const { container, debug } = render(<Application />);
+    const { container } = render(<Application />);
     
     // 2. Wait until the text "Archie Cohen" is displayed.
     await waitForElement(() => getByText(container, "Archie Cohen"));
@@ -236,6 +236,4 @@ it("shows the save error when failing to save an appointment", async () => {
     await waitForElement(() => getByAltText(appointment, "Delete"));
 
     });
-
-
 })

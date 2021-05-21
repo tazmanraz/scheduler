@@ -20,8 +20,9 @@ import Status from "components/Appointment/Status"
 import Error from "components/Appointment/Error"
 import Form from "components/Appointment/Form"
 
-
-
+//////////////////////
+// BUTTON COMPONENT //
+//////////////////////
 storiesOf("Button", module)
   .addParameters({
     backgrounds: [{ name: "dark", value: "#222f3e", default: true }]
@@ -39,16 +40,29 @@ storiesOf("Button", module)
   ));
 
 
-storiesOf("DayListItem", module) //Initiates Storybook and registers our DayListItem component
+/////////////////////////
+// DAYLISTEM COMPONENT //
+/////////////////////////
+
+//Initiates Storybook and registers our DayListItem component
+storiesOf("DayListItem", module) 
   .addParameters({
     backgrounds: [{ name: "dark", value: "#222f3e", default: true }]
-  }) // Provides the default background color for our component
-  .add("Unselected", () => <DayListItem name="Monday" spots={5} />) // To define our stories, we call add() once for each of our test states to generate a story
+  }) 
+  // Provides the default background color for our component
+  .add("Unselected", () => <DayListItem name="Monday" spots={5} />) 
+  // To define our stories, we call add() once for each of our test states to generate a story
   .add("Selected", () => <DayListItem name="Monday" spots={5} selected />) 
   .add("Full", () => <DayListItem name="Monday" spots={0} />)
   .add("Clickable", () => (
-    <DayListItem name="Tuesday" setDay={action("setDay")} spots={5} /> // action() allows us to create a callback that appears in the actions panel when clicked
+    <DayListItem name="Tuesday" setDay={action("setDay")} spots={5} /> 
+    // action() allows us to create a callback that appears in the actions panel when clicked
   ));
+
+
+///////////////////
+// DAY COMPONENT //
+///////////////////
 
 const days = [
   {
@@ -79,7 +93,9 @@ storiesOf("DayList", module)
     <DayList days={days} day={"Tuesday"} setDay={action("setDay")} />
   ));
 
-
+///////////////////////////////////
+// INTERVIEWERLISTITEM COMPONENT //
+///////////////////////////////////
 
 const interviewer = {
   id: 1,
@@ -115,8 +131,9 @@ storiesOf("InterviewerListItem", module)
     />
   ));
 
-
-
+///////////////////////////////
+// INTERVIEWERLIST COMPONENT //
+///////////////////////////////
 
 const interviewers = [
   { id: 1, name: "Sylvia Palmer", avatar: "https://i.imgur.com/LpaY82x.png" },
@@ -144,7 +161,9 @@ storiesOf("InterviewerList", module)
     />
   ));
 
-// APPOINTMENT COMPONENTS
+///////////////////////////
+// APPOINTMENT COMPONENT //
+///////////////////////////
 
 storiesOf("Appointment", module)
   .addParameters({
