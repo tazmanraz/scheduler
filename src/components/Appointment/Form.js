@@ -20,9 +20,15 @@ export default function Form(props) {
     props.onCancel();
   }
 
+  // Ensures forms are filled in properly or else our app crashes
   function validate() {
     if (name === "") {
       setError("Student name cannot be blank");
+      return;
+    }
+
+    if (!interviewer){
+      setError("Must select interviewer");
       return;
     }
     setError("");
