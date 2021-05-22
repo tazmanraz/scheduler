@@ -56,4 +56,3 @@ npm run storybook
 
 - Would like to deploy on heroku or my own my hosting
 - Data coming in from a scheduler-api linked [here](https://github.com/lighthouse-labs/scheduler-api). Currently, to get this running, it needs to run this which deals with postgres database which contains scheduling and interviewer information
-- Looking into crash bug after running it with very specific conditions
