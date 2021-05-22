@@ -1,15 +1,17 @@
 // This selector gets all the appointments for the day and is referenced in Applicaiton.js
 export function getAppointmentsForDay(state, day) {
-  const apptsForDay = [];
 
-  for (const dayCheck of state.days) {
-    if (dayCheck.name === day) {
-      for (const apptCheck of dayCheck.appointments) {
-        apptsForDay.push(state.appointments[apptCheck])
-      }
-    }
+//  Finds opject for particular day
+  const dayFound = state.days.find(eachDay => eachDay.name === day);
+
+  if (!dayFound) {
+    return [];
   }
-  return apptsForDay;
+
+  // Maps appointments for day
+  const apptsForDay = dayFound.appointments.map(appointId => state.appointments[appointId])
+
+  return apptsForDay
 }
 
 
